@@ -4,7 +4,7 @@ from rest_framework import viewsets, permissions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.filter(parent_post__isnull=True).order_by('created_date')
+    queryset = Post.objects.order_by('created_date')
     serializer_class = PostSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [permissions.IsAuthenticated]
