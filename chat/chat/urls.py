@@ -5,6 +5,7 @@ from app import apis
 
 router = routers.DefaultRouter()
 router.register(r'posts', apis.PostViewSet, 'posts')
+router.register(r'users', apis.UserViewSet, 'users')
 
 urlpatterns = [
     path('', include(router.urls)),
