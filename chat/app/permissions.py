@@ -1,16 +1,10 @@
-from rest_framework import permissions
+from rest_framework.permissions import BasePermission
 
-
-class IsLoggedInUserOrAdmin(permissions.BasePermission):
-    
-    def has_object_permission(self, request, view, obj):
-        return obj == request.user or request.user.is_staff
-
-
-class IsAdminUser(permissions.BasePermission):
-
+class IsAdmin(BasePermission):
     def has_permission(self, request, view):
-        return request.user and request.user.is_staff
+        user = view.request.user
 
-    def has_object_permission(self, request, view, obj):
-        return request.user and request.user.is_staff
+        if user.is_superuser:
+            return True
+        else:
+            return request.method not in ('DELETE',)
