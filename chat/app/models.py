@@ -29,6 +29,3 @@ class Post(models.Model):
         self.published_date = timezone.now()
         self.save()
 
-
-
-    
